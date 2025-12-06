@@ -1,25 +1,30 @@
 @import "tailwindcss";
 
 /* ========================================
-   MINIMAL DARK DESIGN - HonzaTheStudent
+   DEPRESSIVE NEON - HonzaTheStudent
    ======================================== */
 
 :root {
-	/* Muted Colors */
-	--text-primary: #888888;
-	--text-secondary: #555555;
-	--text-muted: #444444;
+	/* Sad neon colors - muted, faded */
+	--neon-blue: #4a6670;
+	--neon-purple: #5a4a6a;
+	--neon-pink: #6a4a5a;
+
+	/* Glow - very subtle, tired */
+	--glow-blue: 0 0 30px rgba(100, 150, 180, 0.15);
+	--glow-purple: 0 0 40px rgba(120, 100, 150, 0.1);
+
+	/* Text */
+	--text-primary: #6a7a8a;
+	--text-secondary: #4a5a6a;
+	--text-muted: #3a4a5a;
 
 	/* Background */
-	--bg-dark: #0a0a0a;
-
-	/* Accent - very subtle */
-	--accent: #666666;
-	--accent-dim: #333333;
+	--bg-dark: #0a0a0f;
 }
 
 /* ========================================
-   BASE & RESET
+   BASE
    ======================================== */
 
 * {
@@ -41,7 +46,7 @@ body {
 }
 
 /* ========================================
-   DARK BACKGROUND
+   DARK BACKGROUND WITH SAD NEON
    ======================================== */
 
 .dark-bg {
@@ -51,7 +56,10 @@ body {
 	right: 0;
 	bottom: 0;
 	z-index: -1;
-	background: var(--bg-dark);
+	background:
+		radial-gradient(ellipse at 30% 30%, rgba(80, 100, 120, 0.08) 0%, transparent 50%),
+		radial-gradient(ellipse at 70% 70%, rgba(100, 80, 120, 0.06) 0%, transparent 50%),
+		var(--bg-dark);
 }
 
 /* ========================================
@@ -78,23 +86,28 @@ body {
 }
 
 /* ========================================
-   MAIN TITLE
+   MAIN TITLE - faded neon
    ======================================== */
 
 .title-container {
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 }
 
 .main-title {
-	font-size: clamp(1.8rem, 5vw, 2.5rem);
+	font-size: clamp(2rem, 6vw, 3rem);
 	font-weight: 300;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.15em;
 	text-transform: uppercase;
-	color: var(--text-primary);
+	background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 50%, var(--neon-pink) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-shadow: var(--glow-blue);
+	opacity: 0.8;
 }
 
 /* ========================================
-   COMING SOON TEXT
+   COMING SOON - tired pulse
    ======================================== */
 
 .coming-soon-container {
@@ -102,11 +115,26 @@ body {
 }
 
 .coming-soon {
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	font-weight: 400;
-	color: var(--text-muted);
+	color: var(--neon-blue);
 	text-transform: lowercase;
-	letter-spacing: 0.3em;
+	letter-spacing: 0.4em;
+	text-shadow: var(--glow-blue);
+	animation: tired-pulse 4s ease-in-out infinite;
+	opacity: 0.6;
+}
+
+@keyframes tired-pulse {
+
+	0%,
+	100% {
+		opacity: 0.4;
+	}
+
+	50% {
+		opacity: 0.7;
+	}
 }
 
 /* ========================================
@@ -116,73 +144,9 @@ body {
 .subtitle {
 	font-size: 0.95rem;
 	color: var(--text-secondary);
-	margin-bottom: 2.5rem;
+	margin-bottom: 0;
 	line-height: 1.6;
-}
-
-/* ========================================
-   EMAIL FORM
-   ======================================== */
-
-.email-form {
-	display: flex;
-	gap: 0;
-	max-width: 400px;
-	margin: 0 auto;
-}
-
-.email-input-wrapper {
-	flex: 1;
-}
-
-.email-input {
-	width: 100%;
-	padding: 0.8rem 1rem;
-	font-size: 0.9rem;
-	background: transparent;
-	border: 1px solid var(--accent-dim);
-	border-right: none;
-	color: var(--text-primary);
-	outline: none;
-	transition: border-color 0.3s ease;
-}
-
-.email-input::placeholder {
-	color: var(--text-muted);
-}
-
-.email-input:focus {
-	border-color: var(--accent);
-}
-
-.submit-btn {
-	padding: 0.8rem 1.5rem;
-	font-size: 0.85rem;
-	font-weight: 400;
-	text-transform: lowercase;
-	letter-spacing: 0.05em;
-	background: var(--accent-dim);
-	border: 1px solid var(--accent-dim);
-	color: var(--text-primary);
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-	background: var(--accent);
-	border-color: var(--accent);
-}
-
-/* Mobile form stack */
-@media (max-width: 500px) {
-	.email-form {
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	.email-input {
-		border-right: 1px solid var(--accent-dim);
-	}
+	opacity: 0.7;
 }
 
 /* ========================================
@@ -200,15 +164,27 @@ body {
 .footer a {
 	color: var(--text-secondary);
 	text-decoration: none;
-	transition: color 0.3s ease;
+	transition: all 0.5s ease;
 }
 
 .footer a:hover {
-	color: var(--text-primary);
+	color: var(--neon-blue);
+	text-shadow: var(--glow-blue);
+}
+
+.open-source {
+	margin-top: 0.5rem;
+	font-size: 0.7rem;
+}
+
+.open-source a {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
 }
 
 /* ========================================
-   RESPONSIVE ADJUSTMENTS
+   RESPONSIVE
    ======================================== */
 
 @media (max-width: 768px) {

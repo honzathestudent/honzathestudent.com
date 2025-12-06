@@ -121,7 +121,7 @@ export default function Home() {
 				{/* Footer */}
 				<footer className="footer">
 					<p>
-						© 2024 <a href="https://honzathestudent.com">honzathestudent.com</a> — All rights reserved
+						© 2025 <a href="https://honzathestudent.com">honzathestudent.com</a> — All rights reserved
 					</p>
 					<p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>
 						<a
